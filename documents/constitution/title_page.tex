@@ -1,13 +1,42 @@
-\begin{titlepage}
- \begin{center}
-  {\Huge \textbf{Canadian Federation of Engineering Students}}
-  \newline
+\begin{tikzpicture}[remember picture,overlay]
+ % Top image (image2.png)
+ \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+  \includegraphics[width=\paperwidth]{../../shared/assets/media/image2.png}
+ };
 
-  {\Huge Constitution}
+ % Middle text content
+ \node[anchor=center] at (current page.center) {
+  \begin{minipage}{0.8\textwidth}
+   \centering
+   % Organization name (font size 12)
+   {\fontsize{12}{14}\selectfont Canadian Federation of Engineering Students}
 
-  \vfill
-  \includegraphics[width=0.5\linewidth]{../../shared/assets/logos/CFES_Logo}
-  \vfill
-  \bigfont{Fédération canadienne des étudiants en génie}
- \end{center}
-\end{titlepage}
+   \vspace{1cm}
+
+   % Document title (font size 48)
+   {\fontsize{48}{58}\selectfont \textbf{Constitution}}
+
+   \vspace{1cm}
+
+   % Edition text (font size 12)
+   {\fontsize{12}{14}\selectfont English Edition}
+  \end{minipage}
+ };
+
+ % Bottom image (image3.png)
+ \node[anchor=south west, inner sep=0pt] at (current page.south west) {
+  \includegraphics[width=\paperwidth]{../../shared/assets/media/image3.png}
+ };
+
+ % Preamble text overlay on bottom image
+ \node[anchor=south west, inner sep=0pt] at ([xshift=1in, yshift=1.5cm]current page.south west) {
+  \begin{minipage}{0.8\textwidth}
+   \color{black}
+   \textbf{Revision Date:} 01/01/2025 \\
+   \textbf{Revised By:} CFES Board
+  \end{minipage}
+ };
+\end{tikzpicture}
+
+\thispagestyle{empty}
+\newpage
