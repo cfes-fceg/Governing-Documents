@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+% Preamble
+\input{preamble}
+\newpage
+
+% Setup headers/footers
+\setupcfesheaders{Le Manuel de politiques}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Include all sections
+\input{sections/01-juridiction}
+\input{sections/02-conseil-administration}
+\input{sections/03-commissaires}
+\input{sections/04-reunions-internes}
+\input{sections/05-ccli}
+\input{sections/06-sommet-developpement}
+\input{sections/07-organisations-partenaires}
+\input{sections/08-financement-adhesion}
+\input{sections/09-prix}
+\input{sections/10-elections}
+\input{sections/11-financement-voyages}
+\input{sections/12-directives-redaction}
+\input{sections/13-directives-activites}
+\input{sections/14-fonds-voyage-commissaires}
+\input{sections/15-plaidoyer}
+\input{sections/16-securite-ti}
+\input{sections/17-traitement-securite-info}
+\input{sections/18-plateformes-digitaux}
+\input{sections/19-amendements}
+
+\end{document}
