@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+% Preamble with document intro
+\input{preamble}
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Bylaws}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Include all sections
+\input{sections/01-jurisdiction}
+\input{sections/02-board}
+\input{sections/03-national-executive}
+\input{sections/04-regional-ambassadors}
+\input{sections/05-national-councillors}
+\input{sections/06-membership}
+\input{sections/07-general-meetings}
+\input{sections/08-activities-and-services}
+\input{sections/09-advocacy}
+\input{sections/10-incident-response-committee}
+\input{sections/11-commissioners}
+\input{sections/12-amendments}
+\input{sections/13-appendices}
+
+\end{document}
