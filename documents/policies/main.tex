@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+% Preamble with document intro
+\input{preamble}
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Policy Manual}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Include all sections
+\input{sections/01-jurisdiction}
+\input{sections/02-board}
+\input{sections/03-commissioners}
+\input{sections/04-internal-meetings}
+\input{sections/05-celc}
+\input{sections/06-summit}
+\input{sections/07-partner-organizations}
+\input{sections/08-finances-and-membership}
+\input{sections/09-awards}
+\input{sections/10-elections}
+\input{sections/11-travel-fund}
+\input{sections/12-document-writing-guidelines}
+\input{sections/13-inclusive-conference-policy}
+\input{sections/14-commissioner-travel-fund}
+\input{sections/15-advocacy}
+\input{sections/16-information-technology-security}
+\input{sections/17-information-handling-and-security}
+\input{sections/18-digital-platforms-services}
+\input{sections/19-amendments}
+
+\end{document}
