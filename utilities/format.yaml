@@ -1,0 +1,9 @@
+defaultIndent: ' '
+indentRules:
+  item: ' '
+modifyLineBreaks:
+  textWrapOptions:
+    columns: -1
+    when: after
+    blocksFollow:
+      other: \\item

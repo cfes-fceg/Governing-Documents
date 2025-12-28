@@ -1,0 +1,15 @@
+build/
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.gz
+indent.log
+utilities/credentials.json
+utilities/local-format.sh
+.DS_Store
+*.pdf
+*.bak

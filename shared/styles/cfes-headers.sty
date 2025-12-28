@@ -1,0 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cfes-headers}[2025/01/01 CFES Header/Footer Styles]
+
+\RequirePackage{fancyhdr}
+
+% Define header/footer command that takes document name
+\newcommand{\setupcfesheaders}[1]{
+ \pagestyle{fancy}
+ \fancyhf{}
+ \fancyhead[L]{\normfont{Canadian Federation of Engineering Students}}
+ \fancyhead[R]{\normfont{\rightmark}}
+ \fancyfoot[C]{\normfont{\thepage}}
+ \renewcommand{\headrulewidth}{0.4pt}
+}

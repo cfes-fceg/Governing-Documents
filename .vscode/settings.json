@@ -1,0 +1,25 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "--aux-directory=../../build",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.build.forceRecipeUsage": false,
+  "latex-workshop.formatting.latexindent.args": [
+    "-c",
+    "%DIR%/",
+    "%TMPFILE%",
+    "-y=defaultIndent:' ',indentRules: item: ' '",
+    "-l"
+  ],
+  "latex-workshop.latex.outDir": "../../build"
+}

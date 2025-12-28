@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cfes-common}[2025/01/01 CFES Common Styles]
+
+% Font setup
+\RequirePackage{fontspec}
+\setmainfont{Arial}
+
+% Page geometry
+\RequirePackage[letterpaper, portrait, margin=1in]{geometry}
+
+% Common packages
+\RequirePackage{hyperref}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{tabularray}
+\RequirePackage{longtable}
+\RequirePackage{booktabs}
+\RequirePackage{nameref}
+\RequirePackage{color}
+\RequirePackage{enumitem}
+
+% Table of contents formatting
+\RequirePackage{tocloft}
+\RequirePackage{expl3}
+\ExplSyntaxOn
+\makeatletter
+\clist_map_inline:nn {chap,sec,subsec,subsubsec,para,subpara}
+{\cs_set_nopar:cpn {cft #1 aftersnum} ##1 {)}}
+\ExplSyntaxOff
+\makeatother
+
+% Section numbering depth
+\setcounter{secnumdepth}{5}
+
+% Custom font size commands
+\newcommand{\smallfont}[1]{\fontsize{10pt}{10pt}\normalfont #1}
+\newcommand{\normfont}[1]{\fontsize{12pt}{12pt}\normalfont #1}
+\newcommand{\bigfont}[1]{\fontsize{20pt}{36pt}\normalfont #1}
+
+% List formatting
+\setlist[enumerate,1]{itemsep=0.2em,topsep=0em,leftmargin=1.8em,align=left,labelwidth=15pt}
+\setlist[enumerate,2]{itemsep=0.1em,topsep=0em,partopsep=0em}
+\setlist[enumerate,3]{nosep}
+
+% TOC indentation
+\cftsetindents{subsection}{1.125em}{2.8em}
+\cftsetindents{subsubsection}{2.5em}{3.75em}
