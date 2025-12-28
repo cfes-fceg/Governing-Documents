@@ -3,7 +3,14 @@
 
 % Font setup
 \RequirePackage{fontspec}
-\setmainfont{Arial}
+\setmainfont{Nunito}[
+    Path=../../shared/assets/nunito/static/,
+    Extension=.ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+]
 
 % Page geometry
 \RequirePackage[letterpaper, portrait, margin=1in]{geometry}
