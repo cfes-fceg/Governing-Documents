@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+% Preamble
+\input{preamble}
+\newpage
+
+% Setup headers/footers
+\setupcfesheaders{La Constitution}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Include all sections
+\input{sections/01-general}
+\input{sections/02-definitions}
+\input{sections/03-dispositions}
+\input{sections/04-adhesion}
+\input{sections/05-reunions-generales}
+\input{sections/06-executif-national}
+\input{sections/07-ambassadeurs-regionaux}
+\input{sections/08-conseillers-nationaux}
+\input{sections/09-directeurs}
+\input{sections/10-conseil-administration}
+\input{sections/11-elections}
+\input{sections/12-activites-services}
+\input{sections/13-dispositions-financieres-legales}
+\input{sections/14-dissolution}
+\input{sections/15-amendements}
+\input{sections/16-annulation}
+
+\end{document}
