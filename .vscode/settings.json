@@ -1,4 +1,5 @@
 {
+  "git.branchProtection": ["main", "master"],
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk",
