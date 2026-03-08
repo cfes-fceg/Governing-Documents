@@ -9,6 +9,7 @@ build/
 *.gz
 indent.log
 utilities/credentials.json
+utilities/google-docs/credentials.json
 utilities/local-format.sh
 .DS_Store
 *.pdf
