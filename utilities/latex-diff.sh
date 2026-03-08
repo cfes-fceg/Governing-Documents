@@ -4,13 +4,16 @@
 # This script compares two versions of LaTeX documents and generates a visual
 # diff with deleted text in red strikethrough and added text in green.
 #
-# Usage: latex-diff.sh OLD.tex NEW.tex [OPTIONS]
+# Usage: latex-diff.sh [OLD.tex] NEW.tex [OPTIONS]
 #
 # Arguments:
 #   OLD.tex          Path to the old version of the LaTeX file
-#   NEW.tex          Path to the new version of the LaTeX file
+#                    (not needed when using --git-ref)
+#   NEW.tex          Path to the new/current version of the LaTeX file
 #
 # Options:
+#   --git-ref REF    Compare against a git ref (e.g., origin/main)
+#                    Automatically extracts the old version from git
 #   --output FILE    Output basename (default: diff)
 #                    Files will be saved as FILE.tex and FILE.pdf
 #   --keep-temp      Keep temporary files for debugging
@@ -18,7 +21,10 @@
 #   --help           Show this help message
 #
 # Examples:
-#   # Basic usage - compare two versions of bylaws
+#   # Compare current document against origin/main
+#   ./utilities/latex-diff.sh documents/constitution/main.tex --git-ref origin/main
+#
+#   # Basic usage - compare two explicit files
 #   ./utilities/latex-diff.sh documents/bylaws/main.tex documents/bylaws-v2/main.tex
 #
 #   # Custom output location
@@ -44,6 +50,7 @@ NC='\033[0m' # No Color
 OUTPUT_BASE="diff"
 KEEP_TEMP=0
 NO_PDF=0
+GIT_REF=""
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OLD_FILE=""
 NEW_FILE=""
@@ -96,6 +103,13 @@ while [[ $# -gt 0 ]]; do
             NO_PDF=1
             shift
             ;;
+        --git-ref)
+            if [[ -z "${2:-}" ]]; then
+                error "Option --git-ref requires an argument"
+            fi
+            GIT_REF="$2"
+            shift 2
+            ;;
         -*)
             error "Unknown option: $1"
             ;;
@@ -112,10 +126,22 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Validate required arguments
-if [[ -z "$OLD_FILE" ]] || [[ -z "$NEW_FILE" ]]; then
-    error "Missing required arguments. Usage: $0 OLD.tex NEW.tex [OPTIONS]
+# When using --git-ref, only one positional arg (NEW_FILE) is needed
+if [[ -n "$GIT_REF" ]]; then
+    if [[ -n "$NEW_FILE" ]]; then
+        error "Too many arguments when using --git-ref. Only provide the current file."
+    fi
+    if [[ -z "$OLD_FILE" ]]; then
+        error "Missing required argument: path to current .tex file"
+    fi
+    # With --git-ref, the single positional arg is the new file
+    NEW_FILE="$OLD_FILE"
+    OLD_FILE=""
+else
+    if [[ -z "$OLD_FILE" ]] || [[ -z "$NEW_FILE" ]]; then
+        error "Missing required arguments. Usage: $0 OLD.tex NEW.tex [OPTIONS]
 Run with --help for more information"
+    fi
 fi
 
 # Validate prerequisites
@@ -123,31 +149,60 @@ info "Checking prerequisites..."
 command -v latexdiff >/dev/null 2>&1 || error "latexdiff not found. Please install it (e.g., via TeX Live or MacTeX)"
 command -v latexmk >/dev/null 2>&1 || error "latexmk not found. Please install it (e.g., via TeX Live or MacTeX)"
 
-# Validate input files
-if [[ ! -f "$OLD_FILE" ]]; then
-    error "Old file not found: $OLD_FILE"
-fi
-
+# Validate new file
 if [[ ! -f "$NEW_FILE" ]]; then
     error "New file not found: $NEW_FILE"
-fi
-
-if [[ "$OLD_FILE" != *.tex ]]; then
-    error "Old file must be a .tex file: $OLD_FILE"
 fi
 
 if [[ "$NEW_FILE" != *.tex ]]; then
     error "New file must be a .tex file: $NEW_FILE"
 fi
 
-# Convert to absolute paths
-OLD_FILE="$(cd "$(dirname "$OLD_FILE")" && pwd)/$(basename "$OLD_FILE")"
+# Convert NEW_FILE to absolute path
 NEW_FILE="$(cd "$(dirname "$NEW_FILE")" && pwd)/$(basename "$NEW_FILE")"
 
 # Create temp directory
 TEMP_DIR=$(mktemp -d -t latex-diff-XXXXXX)
 if [[ "$KEEP_TEMP" != "1" ]]; then
     trap 'rm -rf "$TEMP_DIR"' EXIT
+fi
+
+# If using --git-ref, extract old version from git
+if [[ -n "$GIT_REF" ]]; then
+    info "Extracting old version from git ref: $GIT_REF"
+
+    # Get the path relative to repo root
+    REL_PATH="${NEW_FILE#"$REPO_ROOT/"}"
+    DOC_DIR="$(dirname "$REL_PATH")"
+
+    # Extract all files in the document directory from the git ref
+    GIT_OLD_DIR="$TEMP_DIR/git-old"
+    mkdir -p "$GIT_OLD_DIR"
+
+    cd "$REPO_ROOT"
+    git ls-tree -r --name-only "$GIT_REF" -- "$DOC_DIR/" | while read -r f; do
+        mkdir -p "$GIT_OLD_DIR/$(dirname "$f")"
+        git show "$GIT_REF:$f" > "$GIT_OLD_DIR/$f"
+    done
+
+    OLD_FILE="$GIT_OLD_DIR/$REL_PATH"
+    if [[ ! -f "$OLD_FILE" ]]; then
+        error "File not found in git ref $GIT_REF: $REL_PATH"
+    fi
+
+    success "Extracted old version from $GIT_REF"
+else
+    # Validate old file (explicit mode)
+    if [[ ! -f "$OLD_FILE" ]]; then
+        error "Old file not found: $OLD_FILE"
+    fi
+
+    if [[ "$OLD_FILE" != *.tex ]]; then
+        error "Old file must be a .tex file: $OLD_FILE"
+    fi
+
+    # Convert to absolute path
+    OLD_FILE="$(cd "$(dirname "$OLD_FILE")" && pwd)/$(basename "$OLD_FILE")"
 fi
 
 info "Temporary directory: $TEMP_DIR"
@@ -243,8 +298,10 @@ if [[ "$NO_PDF" != "1" ]]; then
     COMPILE_FILE="$TEMP_DIR/${OUTPUT_NAME}.tex"
     cp "$DIFF_FILE" "$COMPILE_FILE"
 
-    # Compile from repo root to preserve relative paths to shared/ directory
-    cd "$REPO_ROOT"
+    # Compile from the new file's directory to preserve relative paths
+    # (e.g., font paths in .sty files like ../../shared/assets/...)
+    COMPILE_DIR="$(dirname "$NEW_FILE")"
+    cd "$COMPILE_DIR"
 
     # Note: We use -f flag to force compilation despite package option warnings
     # and || true to continue even if latexmk exits with warnings
