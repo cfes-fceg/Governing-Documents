@@ -1,13 +1,12 @@
 # LaTeX → Google Docs pipeline
 
-Converts `documents/agreements/activity-financial-agreement.tex` into a
-formatted Google Doc via the Docs API.
+Converts any CFES LaTeX document into a formatted Google Doc via the Docs API.
 
 ## Files
 
 | File | Purpose |
 |---|---|
-| `tex_to_json.py` | Parse the LaTeX source → `activity-financial-agreement.json` |
+| `tex_to_json.py` | Parse any LaTeX source (with `\input{}` resolution) → JSON |
 | `json_to_docs.py` | Send the JSON to a Google Doc via the Docs API |
 | `requirements.txt` | Python dependencies |
 | `credentials.json` | (**not committed**) Google service-account key |
@@ -30,12 +29,12 @@ pip install -r requirements.txt
 3. Save the key as `utilities/google-docs/credentials.json`
    (it is already `.gitignore`d).
 4. Share the target Google Doc with the service account's email address
-   (give it **Editor** access).
+   (give it **Editor** access):
+   `latex-to-docs-converter@cfes-admin-controller.iam.gserviceaccount.com`
 
 ### 3. Prepare a blank Google Doc
 
-The writer appends to whatever is in the document — it does **not** clear it
-first. Create a new, empty Google Doc and copy its ID from the URL:
+The script clears the document automatically before writing. Create a Google Doc and copy its ID from the URL:
 
 ```
 https://docs.google.com/document/d/<DOCUMENT_ID>/edit
@@ -49,28 +48,35 @@ https://docs.google.com/document/d/<DOCUMENT_ID>/edit
 
 ```bash
 cd utilities/google-docs
-python tex_to_json.py
+
+# Constitution (English)
+python tex_to_json.py ../../documents/constitution/main.tex constitution.json
+
+# Constitution (French)
+python tex_to_json.py ../../documents/constitution-fr/main.tex constitution-fr.json
+
+# Policy manual (English)
+python tex_to_json.py ../../documents/policies/main.tex policies.json
+
+# Policy manual (French)
+python tex_to_json.py ../../documents/policies-fr/main.tex policies-fr.json
 ```
 
-Produces `activity-financial-agreement.json` in the same directory.
-Inspect it with:
+Inspect the output with:
 
 ```bash
-python -m json.tool activity-financial-agreement.json | less
+python -m json.tool policies.json | less
 ```
-
-Expected output: 9 top-level section nodes, nested enumerates for
-§3.2 / §3.6 / §7.1 / §7.3, 5 signature nodes, and multiple paragraph nodes.
 
 ### Step 2 — Write to Google Docs
 
 ```bash
 # Pass the document ID as a positional argument …
-python json_to_docs.py <DOCUMENT_ID>
+python json_to_docs.py <DOCUMENT_ID> policies.json
 
 # … or set an environment variable
 export GOOGLE_DOC_ID=<DOCUMENT_ID>
-python json_to_docs.py
+python json_to_docs.py policies.json
 ```
 
 Open the document in your browser to verify formatting.
@@ -93,6 +99,9 @@ item
 
 paragraph
   { type: "paragraph", text: str }
+
+table
+  { type: "table", rows: [[cell, cell, ...], ...] }
 
 signature
   { type: "signature", label: str }
