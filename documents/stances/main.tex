@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+% Stance-specific helpers
+\input{stance-macros}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Document of Stances}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Front matter
+\input{sections/00-preamble}
+\input{sections/01-nomenclature}
+
+% Stances
+\input{sections/02-engineering-accreditation}
+\input{sections/03-language-electives}
+\input{sections/04-mental-health-workload}
+\input{sections/05-quality-internships}
+\input{sections/06-sustainability}
+\input{sections/07-equity-diversity-inclusion}
+\input{sections/08-iron-ring-ceremony}
+\input{sections/09-indigenous-education}
+\input{sections/10-bilingualism}
+\input{sections/11-online-accessibility}
+\input{sections/12-experiential-learning}
+
+\end{document}

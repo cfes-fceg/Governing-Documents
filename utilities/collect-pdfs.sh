@@ -35,5 +35,13 @@ for doc_dir in documents/*/; do
   fi
 done
 
+# The Document of Stances / Cahier des positions also produce individual
+# per-stance PDFs, handled by their own build script which writes straight
+# into pdf/, pdf/stances/, and pdf/stances-fr/.
+if [ -f utilities/build-stances.sh ]; then
+  echo "Building stance PDFs..."
+  bash utilities/build-stances.sh
+fi
+
 echo "PDFs collected in pdf/"
 ls -la pdf/

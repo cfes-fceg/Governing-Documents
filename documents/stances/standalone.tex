@@ -1,0 +1,25 @@
+% Standalone driver for a single stance PDF.
+% Build with:  xelatex "\def\stancefile{sections/NN-name}\input{standalone}"
+% or use build-stances.sh which loops over every stance for you.
+\documentclass[12pt]{article}
+
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\input{stance-macros}
+
+% \stancefile must be defined on the command line (see header above).
+\providecommand{\stancefile}{}
+
+\begin{document}
+
+\input{title_page}
+
+\newpage
+
+\setupcfesheaders{Document of Stances}
+
+\input{\stancefile}
+
+\end{document}
