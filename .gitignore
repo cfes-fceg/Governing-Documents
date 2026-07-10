@@ -14,4 +14,4 @@ utilities/local-format.sh
 .DS_Store
 *.pdf
 *.bak
-!pdf/*
+!pdf/**

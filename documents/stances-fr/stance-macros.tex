@@ -1,0 +1,74 @@
+% Shared helpers for the Cahier des positions (French Document of Stances).
+% Included by main.tex (combined build) and by each standalone driver.
+%
+% Styling mirrors the original .docx: a CFES blue accent, unnumbered section
+% titles and subheadings each underlined by a thin rule, a borderless
+% left/right adoption table, a lightly-boxed blue official-stance statement,
+% and justified body text.
+
+\RequirePackage{xcolor}
+\RequirePackage{titlesec}
+
+% CFES blue sampled from the source document.
+\definecolor{cfesblue}{HTML}{275D9F}
+
+% No coloured/boxed borders around hyperlinks or TOC entries.
+\hypersetup{hidelinks}
+
+% --- Section titles -------------------------------------------------------
+% Unnumbered, CFES blue, followed by a full-width rule. Still listed in the
+% table of contents.
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{cfesblue}}
+  {}
+  {0pt}
+  {}
+  [{\vspace{2pt}\color{cfesblue}\titlerule[0.8pt]}]
+\titlespacing*{\section}{0pt}{*2}{*1.2}
+
+% Drop section numbering entirely (titles are unnumbered) while keeping the
+% counter stepping so labels/refs still work.
+\setcounter{secnumdepth}{0}
+
+% --- Adoption / revision metadata ----------------------------------------
+% Borderless, "Adopté:" flush left and "Dernière mise à jour:" flush right,
+% headings in blue with the values on the line below.
+% Usage: \stanceinfo{Adopted text}{Last updated text}
+\newcommand{\stanceinfo}[2]{%
+ \par\vspace{0.3em}%
+ \noindent
+ \begin{minipage}[t]{0.5\textwidth}
+  {\color{cfesblue}\textbf{Adopté:}}\\[2pt]#1
+ \end{minipage}%
+ \begin{minipage}[t]{0.5\textwidth}
+  \raggedleft
+  {\color{cfesblue}\textbf{Dernière mise à jour:}}\\[2pt]#2
+ \end{minipage}%
+ \par\vspace{0.6em}%
+}
+
+% --- Official stance ------------------------------------------------------
+% Blue statement text inside a thin single-rule frame.
+% Usage: \officialstance{statement text}
+\newcommand{\officialstance}[1]{%
+ \par\vspace{0.2em}%
+ \noindent\textit{La position officielle:}\par
+ \vspace{0.4em}%
+ \noindent
+ \fcolorbox{cfesblue}{white}{%
+  \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+   \color{cfesblue}\textbf{#1}
+  \end{minipage}%
+ }%
+ \par\vspace{0.7em}%
+}
+
+% --- Subheadings ----------------------------------------------------------
+% CFES blue, bold, underlined by a thin full-width rule.
+% Usage: \stanceheading{La position des étudiants}
+\newcommand{\stanceheading}[1]{%
+ \par\vspace{0.7em}%
+ {\noindent\bfseries\color{cfesblue}#1}%
+ \par\vspace{1pt}{\color{cfesblue}\titlerule[0.5pt]}%
+ \par\vspace{0.4em}%
+}
