@@ -116,6 +116,11 @@ def clean_text(text: str) -> str:
     text = text.replace(r"\&", "&")
     text = text.replace(r"\{", "{")
     text = text.replace(r"\}", "}")
+    # TeX ligatures for dashes. Longest first, so "---" is not eaten as "--"
+    # plus a stray hyphen. Without these, "Atlantic -- Provinces of ..." reaches
+    # the Doc as a literal double hyphen.
+    text = text.replace("---", "—")  # em dash
+    text = text.replace("--", "–")   # en dash
     text = VSPACE_RE.sub("", text)
     text = text.replace(r"\noindent", "")
     text = text.replace(r"\\", " ")
