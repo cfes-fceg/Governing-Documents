@@ -1,0 +1,33 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Statuts d'adhésion}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\input{sections/00-termes-definitions}
+\input{sections/01-adhesion}
+\input{sections/02-assemblees-generales}
+\input{sections/03-autres-reunions-des-membres}
+\input{sections/04-revendication}
+\input{sections/05-bilinguisme}
+\input{sections/06-mesures-disciplinaires-envers-les-membres}
+\input{sections/07-amendements}
+\input{sections/08-invalidation}
+\input{sections/09-preseance}
+
+\end{document}

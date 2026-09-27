@@ -3,13 +3,17 @@
 ## English
 
 - [Constitution](pdf/Constitution.pdf)
-- [Bylaws](pdf/Bylaws.pdf)
+- [Membership Bylaws](pdf/Membership%20Bylaws.pdf)
+- [Team Bylaws](pdf/Team%20Bylaws.pdf)
+- [Electoral Bylaws](pdf/Electoral%20Bylaws.pdf)
 - [Policy Manual](pdf/Policy%20Manual.pdf)
 
 ## Français
 
 - [La Constitution](pdf/La%20Constitution.pdf)
-- [Les Statuts](pdf/Les%20Statuts.pdf)
+- [Statuts d'adhésion](pdf/Statuts%20d%27adh%C3%A9sion.pdf)
+- [Statuts de l'équipe](pdf/Statuts%20de%20l%27%C3%A9quipe.pdf)
+- [Statuts électoraux](pdf/Statuts%20%C3%A9lectoraux.pdf)
 - [Le Manuel de politiques](pdf/Le%20Manuel%20de%20politiques.pdf)
 
 ---

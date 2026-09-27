@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Statuts électoraux}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\input{sections/00-definitions}
+\input{sections/01-objectif}
+\input{sections/02-direction-generale-des-elections}
+\input{sections/03-mises-en-candidature}
+\input{sections/04-campagne-electorale}
+\input{sections/05-discours}
+\input{sections/06-election-lors-de-l-assemblee-generale-annuelle}
+\input{sections/07-vote}
+\input{sections/08-ratification}
+\input{sections/09-elections-partielles}
+\input{sections/10-amendements}
+\input{sections/11-invalidation}
+\input{sections/12-preseance}
+
+\end{document}

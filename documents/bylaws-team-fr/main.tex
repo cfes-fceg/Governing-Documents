@@ -1,0 +1,32 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Statuts de l'équipe}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\input{sections/00-termes-definitions}
+\input{sections/01-executif-national}
+\input{sections/02-chair}
+\input{sections/03-ambassades-regionales}
+\input{sections/04-personnes-conseilleres-nationales}
+\input{sections/05-personnes-commissaires}
+\input{sections/06-amendements}
+\input{sections/07-invalidation}
+\input{sections/08-preseance}
+
+\end{document}

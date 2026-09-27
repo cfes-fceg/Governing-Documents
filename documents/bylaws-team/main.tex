@@ -1,0 +1,32 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Team Bylaws}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\input{sections/00-terms-definitions}
+\input{sections/01-national-executive}
+\input{sections/02-chair}
+\input{sections/03-regional-ambassadors}
+\input{sections/04-national-councillors}
+\input{sections/05-commissioners}
+\input{sections/06-amendments}
+\input{sections/07-invalidation}
+\input{sections/08-superseding}
+
+\end{document}

@@ -11,8 +11,12 @@ echo "Collecting PDFs..."
 # Function to get title for a document
 get_title() {
   case "$1" in
-    "bylaws")          echo "Bylaws" ;;
-    "bylaws-fr")       echo "Les Statuts" ;;
+    "bylaws-membership")    echo "Membership Bylaws" ;;
+    "bylaws-membership-fr") echo "Statuts d'adhésion" ;;
+    "bylaws-team")          echo "Team Bylaws" ;;
+    "bylaws-team-fr")       echo "Statuts de l'équipe" ;;
+    "bylaws-electoral")     echo "Electoral Bylaws" ;;
+    "bylaws-electoral-fr")  echo "Statuts électoraux" ;;
     "constitution")    echo "Constitution" ;;
     "constitution-fr") echo "La Constitution" ;;
     "policies")        echo "Policy Manual" ;;
