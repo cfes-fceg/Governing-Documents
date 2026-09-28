@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Electoral Bylaws}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\input{sections/00-definitions}
+\input{sections/01-purpose}
+\input{sections/02-chief-returning-officer}
+\input{sections/03-nominations}
+\input{sections/04-campaigning}
+\input{sections/05-speeches}
+\input{sections/06-election-at-the-annual-general-meeting}
+\input{sections/07-voting}
+\input{sections/08-ratification}
+\input{sections/09-by-elections}
+\input{sections/10-amendments}
+\input{sections/11-invalidation}
+\input{sections/12-superseding}
+
+\end{document}

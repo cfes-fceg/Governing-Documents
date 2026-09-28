@@ -1,0 +1,33 @@
+\documentclass[12pt]{article}
+
+% Load CFES common styles
+\usepackage{../../shared/styles/cfes-common}
+\usepackage{../../shared/styles/cfes-headers}
+\usepackage{../../shared/styles/ninecolors}
+
+\begin{document}
+
+% Title page
+\input{title_page}
+
+\newpage
+
+% Setup headers/footers (after preamble so no header there)
+\setupcfesheaders{Membership Bylaws}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\input{sections/00-terms-definitions}
+\input{sections/01-membership}
+\input{sections/02-general-meetings}
+\input{sections/03-other-meetings-of-the-members}
+\input{sections/04-advocacy}
+\input{sections/05-bilingualism}
+\input{sections/06-member-discipline}
+\input{sections/07-amendments}
+\input{sections/08-invalidation}
+\input{sections/09-superseding}
+
+\end{document}
