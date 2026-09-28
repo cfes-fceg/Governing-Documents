@@ -18,6 +18,15 @@
 
 ---
 
+## 2026-09-27 restructure | Restructuration du 2026-09-27
+
+Adopted by the Membership at SDES 2026: the amended Constitution and the Membership, Team and Electoral Bylaws, replacing the Constitution and Bylaws. Every change, by the sub-motion that made it. | Adoptés par les membres au SDAI 2026 : la Constitution modifiée et les statuts d'adhésion, de l'équipe et électoraux, qui remplacent la Constitution et les Statuts. Chaque modification, selon la sous-motion qui l'a apportée.
+
+- [Changes by sub-motion (PDF)](pdf/2026-09-27%20Changes%20by%20sub-motion.pdf)
+- [Changes by sub-motion (HTML, download to read)](pdf/2026-09-27%20Changes%20by%20sub-motion.html)
+
+---
+
 ## In Progress / Pending French Translation | En cours / Traduction française en attente
 
 The following documents are newer versions made available on request. They are drafts pending formal French translation and should not be treated as final. | Les documents suivants sont des versions plus récentes rendues disponibles sur demande. Ce sont des ébauches en attente d'une traduction française officielle et ne doivent pas être considérées comme définitives.
